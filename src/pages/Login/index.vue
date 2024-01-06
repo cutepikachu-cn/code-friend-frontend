@@ -10,8 +10,8 @@ import {UserLoginParams} from "../../modules/requestParams";
 const router = useRouter()
 
 const userLoginParams = ref<UserLoginParams>({
-  account: '',
-  password: ''
+  account: 'cute-pikachu',
+  password: '12345678'
 })
 const onSubmit = async () => {
   const user = await userLogin(userLoginParams.value)

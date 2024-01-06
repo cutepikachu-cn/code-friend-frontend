@@ -24,13 +24,14 @@ request.interceptors.response.use(function (response) {
     if (response.status !== 200) {
         return response
     }
-    const responseData = response.data
-    if (responseData.code === 0) {
-        return responseData.data
-    } else if (responseData.code === 40100) {
-        showToast({type: 'fail', message: '未登录'})
+    const res = response.data
+    if (res.code === 0) {
+        return res.data
+    } else if (res.code === 40100) {
+        showToast({type: 'fail', message: res.message})
         window.location.href = `/login`
     }
+    return res
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么

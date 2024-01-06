@@ -7,6 +7,7 @@ import User from '../pages/User/index.vue'
 import Search from '../pages/Search/index.vue'
 import SearchResult from '../pages/Search/SearchResult/index.vue'
 import UserEdit from '../pages/UserEdit/index.vue'
+import CreateTeam from '../pages/Team/CreateTeam/index.vue'
 
 const routes = [
     {path: '', redirect: '/home'},
@@ -23,6 +24,7 @@ const routes = [
     {path: '/search', component: Search},
     {path: '/search/result', component: SearchResult},
     {path: '/user/edit', component: UserEdit},
+    {path: '/team/create', component: CreateTeam}
 ]
 
 const router = createRouter({
