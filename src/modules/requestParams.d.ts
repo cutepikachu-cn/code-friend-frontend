@@ -38,7 +38,6 @@ export interface CreateTeamParams {
   status?: number;
   password?: string;
   tags?: string[];
-  validExpireTime?: boolean;
 }
 export interface UpdateTeamParams {
   id: number;
@@ -50,4 +49,8 @@ export interface UpdateTeamParams {
   status?: number;
   password?: string;
   tags?: string[];
+}
+export interface JoinTeamParams {
+  teamId?: number;
+  password?: string;
 }
