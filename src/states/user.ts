@@ -1,4 +1,4 @@
-import type {SelfInfo} from '../modules/type'
+import type {SelfInfo} from '@/modules/type'
 
 let currentUser: SelfInfo;
 

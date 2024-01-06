@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TopBar from "../../../components/TopBar.vue";
+import TopBar from "@/components/TopBar.vue";
 import {onMounted, ref} from 'vue'
-import {CreateTeamParams} from "../../../modules/requestParams";
-import {getCurrentUserState} from "../../../states/user.ts";
+import {CreateTeamParams} from "@/modules/requestParams";
+import {getCurrentUserState} from "@/states/user.ts";
 import {useRouter} from "vue-router";
-import {createTeam} from "../../../plugins/request/teamAPI.ts";
+import {createTeam} from "@/plugins/request/teamAPI.ts";
 import {showSuccessToast} from "vant";
 
 const router = useRouter()

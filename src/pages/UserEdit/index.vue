@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {useRoute, useRouter} from 'vue-router'
 import {ref} from 'vue'
-import TopBar from '../../components/TopBar.vue'
+import TopBar from '@/components/TopBar.vue'
 import {showFailToast, showSuccessToast} from "vant";
 import 'vant/es/toast/style'
-import {setCurrentUserState} from "../../states/user.ts";
-import {updateUser} from "../../plugins/request/userAPI.ts";
+import {setCurrentUserState} from "@/states/user.ts";
+import {updateUser} from "@/plugins/request/userAPI.ts";
 
 const route = useRoute()
 const router = useRouter()

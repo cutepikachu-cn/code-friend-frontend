@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TopBar from '../../components/TopBar.vue'
+import TopBar from '@/components/TopBar.vue'
 import {useRouter} from 'vue-router'
 import {onMounted, ref} from "vue";
-import type {SelfInfo} from "../../modules/type";
-import {getCurrentUserState, setCurrentUserState} from "../../states/user.ts";
-import {getCurrentUser} from "../../plugins/request/userAPI.ts";
+import type {SelfInfo} from "@/modules/type";
+import {getCurrentUserState, setCurrentUserState} from "@/states/user.ts";
+import {getCurrentUser} from "@/plugins/request/userAPI.ts";
 
 const router = useRouter()
 const toEdit = (editKey: string, editName: string, currentValue: any) => {

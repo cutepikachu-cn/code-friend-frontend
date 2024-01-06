@@ -1,13 +1,13 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import BasicLayout from '../layouts/BasicLayout.vue'
-import Login from '../pages/Login/index.vue'
-import Home from '../pages/Home/index.vue'
-import Team from '../pages/Team/index.vue'
-import User from '../pages/User/index.vue'
-import Search from '../pages/Search/index.vue'
-import SearchResult from '../pages/Search/SearchResult/index.vue'
-import UserEdit from '../pages/UserEdit/index.vue'
-import CreateTeam from '../pages/Team/CreateTeam/index.vue'
+import BasicLayout from '@/layouts/BasicLayout.vue'
+import Login from '@/pages/Login/index.vue'
+import Home from '@/pages/Home/index.vue'
+import Team from '@/pages/Team/index.vue'
+import User from '@/pages/User/index.vue'
+import Search from '@/pages/Search/index.vue'
+import SearchResult from '@/pages/Search/SearchResult/index.vue'
+import UserEdit from '@/pages/UserEdit/index.vue'
+import CreateTeam from '@/pages/Team/CreateTeam/index.vue'
 
 const routes = [
     {path: '', redirect: '/home'},

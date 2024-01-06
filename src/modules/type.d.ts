@@ -24,13 +24,6 @@ export interface SelfInfo {
     tags?: string[];
 };
 
-export interface SearchParams {
-    nickname?: string;
-    tags?: string[];
-    current?: number;
-    pageSize?: number;
-}
-
 export interface Page<T> {
     records?: T[];
     total?: number;
@@ -53,7 +46,8 @@ export interface Team {
     userId: number;
     status: number;
     tags?: string[];
-    createTime?: Date
+    createTime?: Date;
+    members?: User[];
 }
 
 export interface BaseResponse<T> {

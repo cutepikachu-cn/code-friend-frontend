@@ -1,7 +1,7 @@
 import request from './request.ts'
-import {Page, SelfInfo, User} from '../../modules/type'
-import {getCurrentUserState} from "../../states/user.ts";
-import {SearchUserParams, UserLoginParams} from "../../modules/requestParams";
+import {Page, SelfInfo, User} from '@/modules/type'
+import {getCurrentUserState} from "@/states/user.ts";
+import {SearchUserParams, UserLoginParams} from "@/modules/requestParams";
 
 export function searchUsers(params: SearchUserParams): Promise<Page<User>> {
     const {current= 1, size= 5} = params

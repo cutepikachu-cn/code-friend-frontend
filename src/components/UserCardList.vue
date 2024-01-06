@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {User} from "../modules/type";
+import {User} from "@/modules/type";
 
 withDefaults(defineProps<{
   userList: User[]

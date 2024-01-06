@@ -1,4 +1,4 @@
-import {setCurrentUserState} from "../states/user.ts";
+import {setCurrentUserState} from "@/states/user.ts";
 import {getCurrentUser} from "./request/userAPI.ts";
 
 export const init = () => {

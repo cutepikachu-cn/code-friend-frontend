@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useRouter} from "vue-router";
-import {userLogin} from "../../plugins/request/userAPI.ts";
-import {setCurrentUserState} from "../../states/user.ts";
+import {userLogin} from "@/plugins/request/userAPI.ts";
+import {setCurrentUserState} from "@/states/user.ts";
 import 'vant/es/toast/style'
 import {showFailToast} from "vant";
-import {UserLoginParams} from "../../modules/requestParams";
+import {UserLoginParams} from "@/modules/requestParams";
 
 const router = useRouter()
 
