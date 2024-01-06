@@ -4,8 +4,8 @@ import {useRouter} from "vue-router";
 import {userLogin} from "@/plugins/request/userAPI.ts";
 import {setCurrentUserState} from "@/states/user.ts";
 import 'vant/es/toast/style'
-import {showFailToast} from "vant";
 import {UserLoginParams} from "@/modules/requestParams";
+import {showFailToast} from "vant";
 
 const router = useRouter()
 
@@ -13,13 +13,16 @@ const userLoginParams = ref<UserLoginParams>({
   account: 'cute-pikachu',
   password: '12345678'
 })
-const onSubmit = async () => {
-  const user = await userLogin(userLoginParams.value)
-  if (user) {
-    setCurrentUserState(user)
-    return router.replace('/home')
-  }
-  showFailToast("登陆失败")
+const onSubmit = () => {
+  userLogin(userLoginParams.value).then(res => {
+    if (res.code !== 0) {
+      showFailToast(res.message)
+      return
+    }
+    setCurrentUserState(res.data)
+    router.replace('/home')
+  })
+
 }
 </script>
 

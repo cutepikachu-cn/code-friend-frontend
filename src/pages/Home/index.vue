@@ -23,8 +23,11 @@ const searchUserParams = ref<SearchUserParams>({
 const onLoad = () => {
   // 异步更新数据
   searchUsers(searchUserParams.value).then(res => {
-    userPage.value = res
-    userList.value.push(...res.records)
+    if (res.code !== 0) {
+      return
+    }
+    userPage.value = res.data
+    userList.value.push(...userPage.value.records)
     // 加载状态结束
     loading.value = false
     // 数据是否全部加载完成

@@ -25,9 +25,8 @@ request.interceptors.response.use(function (response) {
         return response
     }
     const res = response.data
-    if (res.code === 0) {
-        return res.data
-    } else if (res.code === 40100) {
+    console.log(res)
+    if (res.code === 40100) {
         showToast({type: 'fail', message: res.message})
         window.location.href = `/login`
     }

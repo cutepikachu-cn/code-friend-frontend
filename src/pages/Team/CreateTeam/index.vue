@@ -112,11 +112,13 @@ const removeTag = (value) => {
 
 const onSubmit = () => {
   createTeam(form.value).then(res => {
-    if(res) {
-      showSuccessToast('创建队伍成功')
-      return router.replace('/team')
+    if (res.code !== 0) {
+      showSuccessToast(res.message)
+      return
     }
-    showSuccessToast(`创建队伍失败\n${res.message}`)
+    showSuccessToast(res.message)
+    router.replace('/team')
+
   })
 };
 </script>

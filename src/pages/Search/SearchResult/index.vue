@@ -45,6 +45,9 @@ const searchUserParams = ref<SearchUserParams>({
 const onLoad = () => {
   // 异步更新数据
   searchUsers(searchUserParams.value).then(res => {
+    if (res.code !== 0) {
+      return
+    }
     userPage.value = res
     userList.value.push(...res.records)
     // 加载状态结束

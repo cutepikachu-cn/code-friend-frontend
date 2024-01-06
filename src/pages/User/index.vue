@@ -23,11 +23,11 @@ const user = ref<SelfInfo | null>(null)
 onMounted(async () => {
   user.value = getCurrentUserState()
   if (!user.value) {
-    user.value = await getCurrentUser()
-    if (!user.value) {
-      await router.replace('/login')
-    }
-    setCurrentUserState(user.value)
+    getCurrentUser().then(res => {
+      user.value = res.data
+      setCurrentUserState(user.value)
+    })
+
   }
 })
 

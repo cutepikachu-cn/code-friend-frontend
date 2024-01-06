@@ -21,8 +21,11 @@ const searchParams = ref<SearchPageParams>({
 const onLoad = () => {
   // 异步更新数据
   searchTeam(searchParams.value).then(res => {
-    teamPage.value = res
-    teamList.value.push(...res.records)
+    if (res.code !== 0) {
+      return
+    }
+    teamPage.value = res.data
+    teamList.value.push(...teamPage.value.records)
     // 加载状态结束
     loading.value = false
     // 数据是否全部加载完成
@@ -51,7 +54,7 @@ const onLoad = () => {
         :title="team.name ? team.name : '匿名用户'"
     >
       <template #thumb>
-        <van-image src="@/assets/default_team_img.jpg" round/>
+        <van-image src="/default_team_img.jpg" round/>
       </template>
       <template #tags>
         <van-tag :style="{margin: '5px'}" size="medium" plain type="danger" v-for="tag in team.tags">

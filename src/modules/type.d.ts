@@ -50,8 +50,9 @@ export interface Team {
     members?: User[];
 }
 
-export interface BaseResponse<T> {
+export interface BaseResponse<T> extends Promise<{
     code?: number;
     message?: string;
     data?: T;
+}> {
 }

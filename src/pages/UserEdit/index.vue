@@ -16,11 +16,12 @@ const editUser = ref({
 
 const onSubmit = async () => {
   updateUser(editUser.value.editKey, editUser.value.currentValue).then(res => {
-    if (!res) {
-      return showFailToast('修改失败')
+    if (res.code !== 0) {
+      showFailToast(res.message)
+      return
     }
-    setCurrentUserState(res)
-    showSuccessToast('修改成功')
+    setCurrentUserState(res.data)
+    showSuccessToast(res.message)
     router.back()
   }).catch(err => {
     console.log(err)
