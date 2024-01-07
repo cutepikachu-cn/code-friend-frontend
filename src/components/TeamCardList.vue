@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {Page, Team} from "@/modules/type";
 import {ref} from "vue";
-import {SearchPageParams} from "@/modules/requestParams";
-import {searchTeam} from "@/plugins/request/teamAPI.ts";
+import {JoinTeamParams, SearchPageParams} from "@/modules/requestParams";
+import {joinTeam, searchTeam} from "@/plugins/request/teamAPI.ts";
+import {showFailToast, showSuccessToast} from "vant";
 
 let teamPage = ref<Page<Team>>({
   records: [],
@@ -38,6 +39,22 @@ const onLoad = () => {
     console.log(err)
   })
 }
+
+
+
+const doJoinTeam = (teamId) => {
+  const params: JoinTeamParams = {
+    teamId
+  }
+  joinTeam(params).then(res => {
+    if (res.code !== 0) {
+      showFailToast(res.message)
+      return
+    }
+    showSuccessToast(res.message)
+  })
+}
+
 </script>
 
 <template>
@@ -69,7 +86,7 @@ const onLoad = () => {
         过期时间：{{ new Date(team.expireTime).toLocaleString() }}
       </template>
       <template #footer>
-        <van-button type="primary" size="small" round>加入队伍</van-button>
+        <van-button type="primary" size="small" round @click="doJoinTeam(team.id)">加入队伍</van-button>
       </template>
     </van-card>
   </van-list>

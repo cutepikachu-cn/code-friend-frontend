@@ -22,7 +22,7 @@ export interface SelfInfo {
     createTime?: Date;
     role: number;
     tags?: string[];
-};
+}
 
 export interface Page<T> {
     records?: T[];
