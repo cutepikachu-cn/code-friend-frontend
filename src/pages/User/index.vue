@@ -3,8 +3,7 @@ import TopBar from '@/components/TopBar.vue'
 import {useRouter} from 'vue-router'
 import {onMounted, ref} from "vue";
 import type {SelfInfo} from "@/modules/type";
-import {getCurrentUserState, setCurrentUserState} from "@/states/user.ts";
-import {getCurrentUser} from "@/plugins/request/userAPI.ts";
+import {getCurrentUserState} from "@/states/user.ts";
 
 const router = useRouter()
 const toEdit = (editKey: string, editName: string, currentValue: any) => {
@@ -21,14 +20,7 @@ const toEdit = (editKey: string, editName: string, currentValue: any) => {
 const user = ref<SelfInfo | null>(null)
 
 onMounted(async () => {
-  user.value = getCurrentUserState()
-  if (!user.value) {
-    getCurrentUser().then(res => {
-      user.value = res.data
-      setCurrentUserState(user.value)
-    })
-
-  }
+  user.value = await getCurrentUserState()
 })
 
 </script>

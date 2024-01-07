@@ -1,6 +1,7 @@
 export interface SearchPageParams {
     current?: number;
     size?: number;
+    keyword?: string;
 }
 
 export interface UserLoginParams {
@@ -57,4 +58,8 @@ export interface UpdateTeamParams {
 export interface JoinTeamParams {
     teamId?: number;
     password?: string;
+}
+
+export type SearchTeamParams = SearchPageParams & {
+    keyword?: string;
 }

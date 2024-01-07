@@ -1,27 +1,29 @@
 <script setup lang="ts">
 import TopBar from "@/components/TopBar.vue";
 import {onMounted, ref} from 'vue'
-import {CreateTeamParams} from "@/modules/requestParams";
-import {getCurrentUserState} from "@/states/user.ts";
-import {useRouter} from "vue-router";
-import {createTeam} from "@/plugins/request/teamAPI.ts";
+import {UpdateTeamParams} from "@/modules/requestParams";
+import {useRoute} from "vue-router";
+import {getTeam, updateTeam} from "@/plugins/request/teamAPI.ts";
 import {showSuccessToast} from "vant";
 
-const router = useRouter()
+const route = useRoute()
 
-onMounted(() => {
-  const user = getCurrentUserState()
-  form.value.userId = user.id
+const teamId = Number(route.query?.teamId)
+// 初始队伍信息
+const initialTeamInfo = ref<UpdateTeamParams>({})
+
+onMounted(async () => {
+  getTeam(teamId).then(res => {
+    const {members, createTime, ...teamInfo} = res.data
+    teamInfo.expireTime = new Date(teamInfo.expireTime)
+    form.value = {...teamInfo}
+    expireTime_date.value = form.value.expireTime?.toLocaleDateString()
+    expireTime_time.value = form.value.expireTime?.toLocaleTimeString()
+  })
 })
 
 // 表单
-const form = ref<CreateTeamParams>({
-  name: '',
-  maxNumber: 5,
-  expireTime: new Date(),
-  status: 0,
-  tags: []
-})
+const form = ref<UpdateTeamParams>({})
 const expireTime_date = ref(form.value.expireTime?.toLocaleDateString())
 const expireTime_time = ref(form.value.expireTime?.toLocaleTimeString())
 
@@ -108,19 +110,17 @@ const removeTag = (value) => {
 }
 
 const onSubmit = () => {
-  createTeam(form.value).then(res => {
+  updateTeam(form.value).then(res => {
     if (res.code !== 0) {
       return
     }
     showSuccessToast(res.message)
-    router.replace('/team')
-
   })
 };
 </script>
 
 <template>
-  <TopBar title="创建队伍" :show-right="false"/>
+  <TopBar title="修改队伍信息" :show-right="false"/>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
@@ -219,7 +219,7 @@ const onSubmit = () => {
     </van-cell-group>
     <div style="margin: 16px;">
       <van-button round block type="primary" native-type="submit">
-        创建
+        提交修改
       </van-button>
     </div>
   </van-form>

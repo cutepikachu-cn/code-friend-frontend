@@ -2,10 +2,11 @@
 import {useRoute, useRouter} from 'vue-router'
 import {ref} from 'vue'
 import TopBar from '@/components/TopBar.vue'
-import {showFailToast, showSuccessToast} from "vant";
+import {showSuccessToast} from "vant";
 import 'vant/es/toast/style'
 import {setCurrentUserState} from "@/states/user.ts";
 import {updateUser} from "@/plugins/request/userAPI.ts";
+import {UpdateUserParams} from "@/modules/requestParams.d.ts";
 
 const route = useRoute()
 const router = useRouter()
@@ -15,7 +16,10 @@ const editUser = ref({
 })
 
 const onSubmit = async () => {
-  updateUser(editUser.value.editKey, editUser.value.currentValue).then(res => {
+  const params: UpdateUserParams = {
+    [editUser.value.editKey]: editUser.value.currentValue
+  }
+  updateUser(params).then(res => {
     if (res.code !== 0) {
       return
     }
