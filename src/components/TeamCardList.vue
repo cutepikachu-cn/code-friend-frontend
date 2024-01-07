@@ -46,13 +46,7 @@ const doJoinTeam = (teamId) => {
   const params: JoinTeamParams = {
     teamId
   }
-  joinTeam(params).then(res => {
-    if (res.code !== 0) {
-      showFailToast(res.message)
-      return
-    }
-    showSuccessToast(res.message)
-  })
+  joinTeam(params)
 }
 
 </script>

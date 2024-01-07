@@ -113,7 +113,6 @@ const removeTag = (value) => {
 const onSubmit = () => {
   createTeam(form.value).then(res => {
     if (res.code !== 0) {
-      showSuccessToast(res.message)
       return
     }
     showSuccessToast(res.message)

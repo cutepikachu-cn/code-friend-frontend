@@ -16,7 +16,6 @@ const userLoginParams = ref<UserLoginParams>({
 const onSubmit = () => {
   userLogin(userLoginParams.value).then(res => {
     if (res.code !== 0) {
-      showFailToast(res.message)
       return
     }
     setCurrentUserState(res.data)

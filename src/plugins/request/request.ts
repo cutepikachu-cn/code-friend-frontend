@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {showToast} from 'vant';
+import {showFailToast, showToast} from 'vant';
 import 'vant/es/toast/style'
 
 const request = axios.create({
@@ -26,8 +26,10 @@ request.interceptors.response.use(function (response) {
     }
     const res = response.data
     console.log(res)
+    if (res.code !== 0) {
+        showFailToast(res.message)
+    }
     if (res.code === 40100) {
-        showToast({type: 'fail', message: res.message})
         window.location.href = `/login`
     }
     return res

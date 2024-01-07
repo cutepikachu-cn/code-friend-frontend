@@ -17,7 +17,6 @@ const editUser = ref({
 const onSubmit = async () => {
   updateUser(editUser.value.editKey, editUser.value.currentValue).then(res => {
     if (res.code !== 0) {
-      showFailToast(res.message)
       return
     }
     setCurrentUserState(res.data)
