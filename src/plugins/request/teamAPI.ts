@@ -63,3 +63,11 @@ export function updateTeam(params: UpdateTeamParams): BaseResponse<Team> {
         ...params
     });
 }
+
+export function listMyJoinedTeams(): BaseResponse<Team> {
+  return request.get(`/team/my/join`);
+}
+
+export function listMyManageTeams(): BaseResponse<Team> {
+  return request.get(`/team/my/manage`);
+}
