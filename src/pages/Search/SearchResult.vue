@@ -2,10 +2,10 @@
 import TopBar from '@/components/TopBar.vue'
 import {useRoute} from 'vue-router'
 import {ref} from 'vue'
-import {Page, User} from '@/modules/type'
-import {searchUsers} from '@/plugins/request/userAPI.ts'
+import {Page, User} from '@/modules/type.d.ts'
+import {searchUsers} from '@/plugins/request/userAPI.js'
 import UserCardList from "@/components/UserCardList.vue";
-import {SearchUserParams} from "@/modules/requestParams";
+import {SearchUserParams} from "@/modules/requestParams.d.ts";
 
 const route = useRoute()
 

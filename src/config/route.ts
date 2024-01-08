@@ -5,10 +5,11 @@ import Home from '@/pages/Home/index.vue'
 import Team from '@/pages/Team/index.vue'
 import User from '@/pages/User/index.vue'
 import Search from '@/pages/Search/index.vue'
-import SearchResult from '@/pages/Search/SearchResult/index.vue'
-import UserEdit from '@/pages/UserEdit/index.vue'
-import CreateTeam from '@/pages/Team/CreateTeam/index.vue'
-import TeamEdit from '@/pages/Team/TeamEdit/index.vue'
+import SearchResult from '@/pages/Search/SearchResult.vue'
+import UserEdit from '@/pages/User/UserEdit.vue'
+import CreateTeam from '@/pages/Team/CreateTeam.vue'
+import TeamEdit from '@/pages/Team/TeamEdit.vue'
+import UserInfo from "@/pages/User/UserInfo.vue";
 
 const routes = [
     {path: '', redirect: '/home'},
@@ -24,6 +25,7 @@ const routes = [
     },
     {path: '/search', component: Search},
     {path: '/search/result', component: SearchResult},
+    {path: '/user/info', component: UserInfo},
     {path: '/user/edit', component: UserEdit},
     {path: '/team/create', component: CreateTeam},
     {path: '/team/edit', component: TeamEdit}

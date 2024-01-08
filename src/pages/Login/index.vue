@@ -5,7 +5,6 @@ import {userLogin} from "@/plugins/request/userAPI.ts";
 import {setCurrentUserState} from "@/states/user.ts";
 import 'vant/es/toast/style'
 import {UserLoginParams} from "@/modules/requestParams";
-import {showFailToast} from "vant";
 
 const router = useRouter()
 

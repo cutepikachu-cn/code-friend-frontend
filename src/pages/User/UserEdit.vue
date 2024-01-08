@@ -4,9 +4,9 @@ import {ref} from 'vue'
 import TopBar from '@/components/TopBar.vue'
 import {showSuccessToast} from "vant";
 import 'vant/es/toast/style'
-import {setCurrentUserState} from "@/states/user.ts";
-import {updateUser} from "@/plugins/request/userAPI.ts";
-import {UpdateUserParams} from "@/modules/requestParams.d.ts";
+import {setCurrentUserState} from "@/states/user.js";
+import {updateUser} from "@/plugins/request/userAPI.js";
+import {UpdateUserParams} from "@/modules/requestParams.js";
 
 const route = useRoute()
 const router = useRouter()

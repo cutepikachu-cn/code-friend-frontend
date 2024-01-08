@@ -1,29 +1,27 @@
 <script setup lang="ts">
 import TopBar from "@/components/TopBar.vue";
 import {onMounted, ref} from 'vue'
-import {UpdateTeamParams} from "@/modules/requestParams";
-import {useRoute} from "vue-router";
-import {getTeam, updateTeam} from "@/plugins/request/teamAPI.ts";
+import {CreateTeamParams} from "@/modules/requestParams.d.ts";
+import {getCurrentUserState} from "@/states/user.js";
+import {useRouter} from "vue-router";
+import {createTeam} from "@/plugins/request/teamAPI.js";
 import {showSuccessToast} from "vant";
 
-const route = useRoute()
+const router = useRouter()
 
-const teamId = Number(route.query?.teamId)
-// 初始队伍信息
-const initialTeamInfo = ref<UpdateTeamParams>({})
-
-onMounted(async () => {
-  getTeam(teamId).then(res => {
-    const {members, createTime, ...teamInfo} = res.data
-    teamInfo.expireTime = new Date(teamInfo.expireTime)
-    form.value = {...teamInfo}
-    expireTime_date.value = form.value.expireTime?.toLocaleDateString()
-    expireTime_time.value = form.value.expireTime?.toLocaleTimeString()
-  })
+onMounted(() => {
+  const user = getCurrentUserState()
+  form.value.userId = user.id
 })
 
 // 表单
-const form = ref<UpdateTeamParams>({})
+const form = ref<CreateTeamParams>({
+  name: '',
+  maxNumber: 5,
+  expireTime: new Date(),
+  status: 0,
+  tags: []
+})
 const expireTime_date = ref(form.value.expireTime?.toLocaleDateString())
 const expireTime_time = ref(form.value.expireTime?.toLocaleTimeString())
 
@@ -73,7 +71,7 @@ const showDatePicker = ref(false)
 const showTimePicker = ref(false)
 const onConfirmExpireTime_date = ({selectedValues: values}) => {
   values.forEach((value, index) => {
-    values[index] = Number(value)
+    values[CreateTeam] = Number(value)
   })
   form.value.expireTime?.setFullYear(values[0])
   form.value.expireTime?.setMonth(values[1] - 1, values[2])
@@ -84,7 +82,7 @@ const onConfirmExpireTime_date = ({selectedValues: values}) => {
 }
 const onConfirmExpireTime_time = ({selectedValues: values}) => {
   values.forEach((value, index) => {
-    values[index] = Number(value)
+    values[CreateTeam] = Number(value)
   })
   form.value.expireTime?.setHours(...values)
 
@@ -110,17 +108,19 @@ const removeTag = (value) => {
 }
 
 const onSubmit = () => {
-  updateTeam(form.value).then(res => {
+  createTeam(form.value).then(res => {
     if (res.code !== 0) {
       return
     }
     showSuccessToast(res.message)
+    router.replace('/team')
+
   })
 };
 </script>
 
 <template>
-  <TopBar title="修改队伍信息" :show-right="false"/>
+  <TopBar title="创建队伍" :show-right="false"/>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
@@ -219,7 +219,7 @@ const onSubmit = () => {
     </van-cell-group>
     <div style="margin: 16px;">
       <van-button round block type="primary" native-type="submit">
-        提交修改
+        创建
       </van-button>
     </div>
   </van-form>

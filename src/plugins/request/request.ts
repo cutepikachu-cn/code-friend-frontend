@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {showFailToast, showToast} from 'vant';
+import {showFailToast} from 'vant';
 import 'vant/es/toast/style'
 
 const request = axios.create({

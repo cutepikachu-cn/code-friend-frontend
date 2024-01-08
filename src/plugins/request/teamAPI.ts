@@ -1,6 +1,6 @@
 import request from './request.ts'
 import {Page, Team} from "@/modules/type";
-import {CreateTeamParams, JoinTeamParams, SearchPageParams, UpdateTeamParams} from "@/modules/requestParams";
+import {CreateTeamParams, JoinTeamParams, UpdateTeamParams} from "@/modules/requestParams";
 import {BaseResponse} from "../../modules/type";
 import {SearchTeamParams} from "../../modules/requestParams";
 
@@ -19,7 +19,7 @@ export function dismissTeam(teamId: number): BaseResponse<string> {
 }
 
 export function exitTeam(teamId: number): BaseResponse<string> {
-  return request.delete(`/team/exit`, {
+    return request.delete(`/team/exit`, {
         params: {
             teamId
         }
@@ -35,7 +35,7 @@ export function getTeam(teamId: number): BaseResponse<Team> {
 }
 
 export function joinTeam(params: JoinTeamParams): BaseResponse<string> {
-  return request.post(`/team/join`, params);
+    return request.post(`/team/join`, params);
 }
 
 export function searchTeam(params: SearchTeamParams): BaseResponse<Page<Team>> {
@@ -50,12 +50,12 @@ export function searchTeam(params: SearchTeamParams): BaseResponse<Page<Team>> {
 }
 
 export function transferTeam(teamId: number, userId: number): BaseResponse<string> {
-  return request.post(`/api/team/transfer`, {
-      params: {
-          teamId,
-          userId
-      }
-  });
+    return request.post(`/api/team/transfer`, {
+        params: {
+            teamId,
+            userId
+        }
+    });
 }
 
 export function updateTeam(params: UpdateTeamParams): BaseResponse<Team> {
@@ -65,9 +65,9 @@ export function updateTeam(params: UpdateTeamParams): BaseResponse<Team> {
 }
 
 export function listMyJoinedTeams(): BaseResponse<Team> {
-  return request.get(`/team/my/join`);
+    return request.get(`/team/my/join`);
 }
 
 export function listMyManageTeams(): BaseResponse<Team> {
-  return request.get(`/team/my/manage`);
+    return request.get(`/team/my/manage`);
 }
