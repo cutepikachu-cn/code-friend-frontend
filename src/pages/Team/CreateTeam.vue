@@ -71,7 +71,7 @@ const showDatePicker = ref(false)
 const showTimePicker = ref(false)
 const onConfirmExpireTime_date = ({selectedValues: values}) => {
   values.forEach((value, index) => {
-    values[CreateTeam] = Number(value)
+    values[index] = Number(value)
   })
   form.value.expireTime?.setFullYear(values[0])
   form.value.expireTime?.setMonth(values[1] - 1, values[2])
@@ -82,7 +82,7 @@ const onConfirmExpireTime_date = ({selectedValues: values}) => {
 }
 const onConfirmExpireTime_time = ({selectedValues: values}) => {
   values.forEach((value, index) => {
-    values[CreateTeam] = Number(value)
+    values[index] = Number(value)
   })
   form.value.expireTime?.setHours(...values)
 

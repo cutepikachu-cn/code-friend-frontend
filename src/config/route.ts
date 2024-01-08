@@ -10,6 +10,8 @@ import UserEdit from '@/pages/User/UserEdit.vue'
 import CreateTeam from '@/pages/Team/CreateTeam.vue'
 import TeamEdit from '@/pages/Team/TeamEdit.vue'
 import UserInfo from "@/pages/User/UserInfo.vue";
+import ManageTeams from "@/pages/User/ManageTeams.vue";
+import JoinedTeams from "@/pages/User/JoinedTeams.vue";
 
 const routes = [
     {path: '', redirect: '/home'},
@@ -27,6 +29,8 @@ const routes = [
     {path: '/search/result', component: SearchResult},
     {path: '/user/info', component: UserInfo},
     {path: '/user/edit', component: UserEdit},
+    {path: '/user/team/manage', component: ManageTeams},
+    {path: '/user/team/join', component: JoinedTeams},
     {path: '/team/create', component: CreateTeam},
     {path: '/team/edit', component: TeamEdit}
 ]

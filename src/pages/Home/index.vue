@@ -3,7 +3,7 @@ import TopBar from '@/components/TopBar.vue'
 import {ref} from "vue";
 import {Page, User} from "@/modules/type";
 import {searchUsers} from "@/plugins/request/userAPI.ts";
-import UserCardList from "@/components/UserCardList.vue";
+import UserCardList from "@/components/UserCard.vue";
 import {SearchUserParams} from "@/modules/requestParams";
 
 let userPage = ref<Page<User>>({
