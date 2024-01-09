@@ -9,6 +9,7 @@ import {useRouter} from "vue-router";
 
 const user = ref<SelfInfo | null>(null)
 const teamList = ref<Team[]>([])
+const router = useRouter()
 
 onMounted(async () => {
   user.value = await getCurrentUserState()
@@ -20,21 +21,15 @@ onMounted(async () => {
   })
 })
 
-const router = useRouter()
-const editTeam = (teamId) => {
-  router.push(`/team/edit?teamId=${teamId}`)
+const toManage = (teamId) => {
+  router.push(`/team/info?teamId=${teamId}`)
 }
 </script>
 
 <template>
   <TopBar title="管理队伍" :show-right="false"/>
-  <TeamCard v-for="team in teamList" :team="team" :key="team.id">
-    <van-button type="primary" size="small" round @click="editTeam(team.id)">
-      编辑队伍
-    </van-button>
-    <van-button type="primary" size="small" round @click="">
-      管理队伍
-    </van-button>
+  <TeamCard v-for="team in teamList" :cur-user="user" :team="team" :key="team.id">
+    <van-button type="primary" size="small" round @click="toManage(team.id)">管理</van-button>
   </TeamCard>
 </template>
 

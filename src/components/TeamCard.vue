@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import {SelfInfo, Team} from "@/modules/type.d.ts";
+import {SelfInfo, Team, User} from "@/modules/type.d.ts";
 import {JoinTeamParams} from "@/modules/requestParams.d.ts";
 import {joinTeam} from "@/plugins/request/teamAPI.ts";
-import {onMounted, ref} from "vue";
-import {getCurrentUserState} from "@/states/user.ts";
+import {showSuccessToast} from "vant";
 
 
-defineProps<{
-  team: Team
+const props = defineProps<{
+  team: Team,
+  curUser: SelfInfo
 }>()
-
-const user = ref<SelfInfo>({})
-
-onMounted(async () => {
-  user.value = await getCurrentUserState()
-})
 
 const doJoinTeam = (teamId) => {
   const params: JoinTeamParams = {
     teamId
   }
-  joinTeam(params)
+  joinTeam(params).then(res => {
+    if (res.code !== 0) {
+      return
+    }
+    showSuccessToast(res.message)
+    props.team.members?.push(props.curUser)
+  })
 }
 
+const isInTeam = (userId: number, team: Team) => {
+  if (team.userId === userId) {
+    return true
+  }
+  return team.members?.find((member: User) => member.id === userId)
+}
 
 </script>
 
@@ -48,7 +54,7 @@ const doJoinTeam = (teamId) => {
     </template>
     <template #footer>
       <slot name="default">
-        <van-button v-if="team.userId !== user.id" type="primary" size="small" round @click="doJoinTeam(team.id)">
+        <van-button v-if="!isInTeam(curUser.id, team)" type="primary" size="small" round @click="doJoinTeam(team.id)">
           加入队伍
         </van-button>
         <van-button v-else type="primary" size="small" round>已加入</van-button>

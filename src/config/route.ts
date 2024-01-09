@@ -12,6 +12,7 @@ import TeamEdit from '@/pages/Team/TeamEdit.vue'
 import UserInfo from "@/pages/User/UserInfo.vue";
 import ManageTeams from "@/pages/User/ManageTeams.vue";
 import JoinedTeams from "@/pages/User/JoinedTeams.vue";
+import TeamInfo from "@/pages/Team/TeamInfo.vue";
 
 const routes = [
     {path: '', redirect: '/home'},
@@ -32,7 +33,8 @@ const routes = [
     {path: '/user/team/manage', component: ManageTeams},
     {path: '/user/team/join', component: JoinedTeams},
     {path: '/team/create', component: CreateTeam},
-    {path: '/team/edit', component: TeamEdit}
+    {path: '/team/edit', component: TeamEdit},
+    {path: '/team/info', component: TeamInfo}
 ]
 
 const router = createRouter({

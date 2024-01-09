@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import TopBar from '@/components/TopBar.vue'
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {searchTeam} from "@/plugins/request/teamAPI.ts";
-import {Page, Team} from "@/modules/type.d.ts";
+import {Page, SelfInfo, Team} from "@/modules/type.d.ts";
 import {SearchTeamParams} from "@/modules/requestParams.d.ts";
 import TeamCard from "@/components/TeamCard.vue";
+import {getCurrentUserState} from "@/states/user.ts";
+
+const user = ref<SelfInfo>({})
+onMounted(async () => {
+  user.value = await getCurrentUserState()
+})
 
 const keyword = ref('');
 const onSearch = (val) => {
@@ -70,7 +76,7 @@ const onLoad = () => {
       :finished-text="teamList.length !== 0 ? '没有更多了': ''"
       @load="onLoad"
   >
-    <TeamCard v-for="team in teamList" :team="team" :key="team.id"/>
+    <TeamCard v-for="team in teamList" :cur-user="user" :team="team" :key="team.id"/>
   </van-list>
 </template>
 
