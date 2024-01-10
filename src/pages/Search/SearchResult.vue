@@ -66,7 +66,7 @@ const onLoad = () => {
 
 <template>
   <TopBar title="查找结果" :show-right="false"/>
-  <van-empty v-if="userList.length === 0" description="查找结果为空"/>
+  <van-empty v-if="!loading && userList.length === 0" description="查找结果为空"/>
   <van-list
       v-model:loading="loading"
       :finished="finished"
@@ -74,6 +74,11 @@ const onLoad = () => {
       @load="onLoad"
   >
     <UserCardList :user-list="userList"/>
+    <template #loading>
+      <van-loading color="#0094ff">
+        加载中...
+      </van-loading>
+    </template>
   </van-list>
 </template>
 
