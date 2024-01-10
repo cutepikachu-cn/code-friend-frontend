@@ -12,7 +12,7 @@ const toEdit = (editKey: string, editName: string, currentValue: any) => {
     query: {
       editKey,
       editName,
-      currentValue
+      currentValue: editKey !== 'tags' ? currentValue : currentValue.join(',')
     }
   })
 }

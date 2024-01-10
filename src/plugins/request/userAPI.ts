@@ -21,7 +21,8 @@ export async function updateUser(params: UpdateUserParams): BaseResponse<SelfInf
     const currentUser = await getCurrentUserState()
     return request.put('/user/update', {
         ...params,
-        id: currentUser?.id
+        id: currentUser?.id,
+        tags: params.tags?.join(',')
     })
 }
 
