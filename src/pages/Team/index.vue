@@ -69,7 +69,9 @@ const onLoad = () => {
         @search="onSearch"
     />
   </form>
-  <van-button type="primary" to="/team/create">创建队伍</van-button>
+  <van-button type="primary" class="create-team" to="/team/create">
+    <van-icon name="plus"/>
+  </van-button>
   <van-list
       v-model:loading="loading"
       :finished="finished"
@@ -81,5 +83,10 @@ const onLoad = () => {
 </template>
 
 <style scoped>
-
+.create-team {
+  position: fixed;
+  bottom: 60px;
+  right: 12px;
+  border-radius: 50%;
+}
 </style>
