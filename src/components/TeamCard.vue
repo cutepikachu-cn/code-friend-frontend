@@ -4,7 +4,9 @@ import {JoinTeamParams} from "@/modules/requestParams.d.ts";
 import {ref} from "vue";
 import {showFailToast, showSuccessToast} from "vant";
 import {joinTeam} from "@/plugins/request/teamAPI.ts";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 
 const props = defineProps<{
   team: Team,
@@ -44,6 +46,9 @@ const isInTeam = (userId: number, team: Team) => {
   return team.members?.find((member: User) => member.id === userId)
 }
 
+const toTeamInfo = (teamId) => {
+  router.push(`/team/info?teamId=${teamId}`)
+}
 </script>
 
 <template>
@@ -70,6 +75,7 @@ const isInTeam = (userId: number, team: Team) => {
     </template>
     <template #footer>
       <slot name="default">
+        <van-button type="primary" size="small" round @click="toTeamInfo(team.id)">详情</van-button>
         <van-button v-if="!isInTeam(curUser.id, team)" type="primary" size="small" round @click="showConfirm(team.id)">
           加入队伍
         </van-button>
