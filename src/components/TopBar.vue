@@ -1,30 +1,33 @@
 <script setup lang="ts">
 import {useRouter} from 'vue-router'
+import {ref} from "vue";
 
 const router = useRouter()
 
 const onClickLeft = () => history.back()
-const onClickRight = () => router.push('/search')
+const onClickRight = () => router.push('/user/search')
 
 const props = defineProps({
-	title: {
-		default: '',
-		type: String
-	},
-	showLeft: {
-		default: true,
-		type: Boolean
-	},
-	showRight: {
-		default: true,
-		type: Boolean
-	},
+  showLeft: {
+    default: true,
+    type: Boolean
+  },
+  showRight: {
+    default: true,
+    type: Boolean
+  },
+})
+
+const title = ref<string>('')
+router.beforeEach((to, _) => {
+  document.title = to.meta.title ? to.meta.title as string : '码友匹配'
+ title.value = to.meta.title ? to.meta.title as string : ''
 })
 </script>
 
 <template>
   <van-nav-bar
-      :title="props.title"
+      :title="title"
       @click-left="onClickLeft"
       @click-right="onClickRight"
       placeholder

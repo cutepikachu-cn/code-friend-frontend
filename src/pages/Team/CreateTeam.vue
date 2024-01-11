@@ -120,7 +120,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <TopBar title="创建队伍" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field

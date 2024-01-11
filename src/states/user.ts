@@ -13,7 +13,7 @@ const getCurrentUserState = async (): SelfInfo => {
         const res = await getCurrentUser()
         if (res.code !== 0) {
             const router = useRouter()
-            router.replace('/login')
+            router.replace('/user/login')
             return
         }
         currentUser = res.data

@@ -16,25 +16,25 @@ import TeamInfo from "@/pages/Team/TeamInfo.vue";
 
 const routes = [
     {path: '', redirect: '/home'},
-    {path: '/login', component: Login},
+    {path: '/user/login', meta: {title: '登录'}, component: Login},
     {
         path: '/',
         component: BasicLayout,
         children: [
-            {path: 'home', component: Home},
-            {path: 'team', component: Team},
-            {path: 'user', component: User},
+            {path: 'home', meta: {title: '伙伴匹配'}, component: Home},
+            {path: 'team', meta: {title: '队伍'}, component: Team},
+            {path: 'user', meta: {title: '用户'}, component: User},
         ]
     },
-    {path: '/search', component: Search},
-    {path: '/search/result', component: SearchResult},
-    {path: '/user/info', component: UserInfo},
-    {path: '/user/edit', component: UserEdit},
-    {path: '/user/team/manage', component: ManageTeams},
-    {path: '/user/team/join', component: JoinedTeams},
-    {path: '/team/create', component: CreateTeam},
-    {path: '/team/edit', component: TeamEdit},
-    {path: '/team/info', component: TeamInfo}
+    {path: '/user/search', meta: {title: '搜索用户'}, component: Search},
+    {path: '/user/search/result', meta: {title: '搜索结果'}, component: SearchResult},
+    {path: '/user/info', meta: {title: '个人信息'}, component: UserInfo},
+    {path: '/user/edit', meta: {title: '编辑信息'}, component: UserEdit},
+    {path: '/user/team/manage', meta: {title: '管理的队伍'}, component: ManageTeams},
+    {path: '/user/team/join', meta: {title: '加入的队伍'}, component: JoinedTeams},
+    {path: '/team/create', meta: {title: '创建队伍'}, component: CreateTeam},
+    {path: '/team/edit', meta: {title: '编辑队伍信息'}, component: TeamEdit},
+    {path: '/team/info', meta: {title: '队伍信息'}, component: TeamInfo}
 ]
 
 const router = createRouter({

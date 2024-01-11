@@ -33,10 +33,12 @@ const isInTeam = (userId: number, team: Team) => {
 </script>
 
 <template>
-  <van-card
-      :desc="team.description ? team.description : '无介绍'"
-      :title="team.name ? team.name : '匿名用户'"
-  >
+  <van-card :title="team.name">
+    <template #desc>
+      <div class="van-ellipsis">
+        {{ team.description ? team.description : '无介绍' }}
+      </div>
+    </template>
     <template #thumb>
       <van-image src="/default_team_img.jpg" round/>
     </template>

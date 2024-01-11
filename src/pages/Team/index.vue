@@ -61,7 +61,7 @@ const onLoad = () => {
 </script>
 
 <template>
-  <TopBar title="队伍" :show-left="false"/>
+  <TopBar :show-left="false" :show-right="false"/>
   <form action="/">
     <van-search
         v-model="keyword"
