@@ -6,7 +6,6 @@ const router = useRouter()
 const route = useRoute()
 
 const onClickLeft = () => history.back()
-const onClickRight = () => router.push('/user/search')
 
 const props = defineProps({
   showLeft: {
@@ -30,7 +29,6 @@ onMounted(() => {
   <van-nav-bar
       :title="title"
       @click-left="onClickLeft"
-      @click-right="onClickRight"
       placeholder
       fixed
   >

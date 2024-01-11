@@ -5,6 +5,9 @@ import {Page, User} from "@/modules/type";
 import {searchUsers} from "@/plugins/request/userAPI.ts";
 import UserCardList from "@/components/UserCard.vue";
 import {SearchUserParams} from "@/modules/requestParams";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 let userPage = ref<Page<User>>({
   records: [],
@@ -43,7 +46,11 @@ const onLoad = () => {
 </script>
 
 <template>
-  <TopBar :show-left="false"/>
+  <TopBar :show-left="false">
+    <template #right>
+      <van-icon name="search" size="18" @click="router.push('/user/search')"/>
+    </template>
+  </TopBar>
   <van-empty v-if="!loading && userList.length === 0" description="结果为空"/>
   <van-list
       v-model:loading="loading"
