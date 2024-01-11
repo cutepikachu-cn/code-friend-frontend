@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import {useRouter} from 'vue-router'
-import {ref} from "vue";
+import {useRoute, useRouter} from 'vue-router'
+import {onMounted, ref} from "vue";
 
 const router = useRouter()
+const route = useRoute()
 
 const onClickLeft = () => history.back()
 const onClickRight = () => router.push('/user/search')
@@ -19,9 +20,9 @@ const props = defineProps({
 })
 
 const title = ref<string>('')
-router.beforeEach((to, _) => {
-  document.title = to.meta.title ? to.meta.title as string : '码友匹配'
- title.value = to.meta.title ? to.meta.title as string : ''
+onMounted(() => {
+  title.value = route.meta.title as string
+  document.title = route.meta.title as string
 })
 </script>
 

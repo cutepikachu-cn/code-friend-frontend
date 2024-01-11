@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import TopBar from '@/components/TopBar.vue'
 import {onMounted, ref} from "vue";
+import {useWindowSize} from '@vant/use'
 import {searchTeam} from "@/plugins/request/teamAPI.ts";
 import {Page, SelfInfo, Team} from "@/modules/type.d.ts";
 import {SearchTeamParams} from "@/modules/requestParams.d.ts";
 import TeamCard from "@/components/TeamCard.vue";
 import {getCurrentUserState} from "@/states/user.ts";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const user = ref<SelfInfo>({})
 onMounted(async () => {
@@ -58,6 +62,8 @@ const onLoad = () => {
     console.log(err)
   })
 }
+
+const {width, height} = useWindowSize()
 </script>
 
 <template>
@@ -69,9 +75,11 @@ const onLoad = () => {
         @search="onSearch"
     />
   </form>
-  <van-button type="primary" class="create-team" to="/team/create">
-    <van-icon name="plus"/>
-  </van-button>
+  <van-floating-bubble
+      axis="lock"
+      icon="plus"
+      :offset="{x: width - 52, y: height - 100}"
+      @click="router.push('/team/create')"/>
   <van-list
       v-model:loading="loading"
       :finished="finished"
@@ -83,10 +91,5 @@ const onLoad = () => {
 </template>
 
 <style scoped>
-.create-team {
-  position: fixed;
-  bottom: 60px;
-  right: 12px;
-  border-radius: 50%;
-}
+
 </style>

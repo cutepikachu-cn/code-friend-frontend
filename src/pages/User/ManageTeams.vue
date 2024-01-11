@@ -27,7 +27,7 @@ const toManage = (teamId) => {
 </script>
 
 <template>
-  <TopBar title="管理队伍" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <TeamCard v-for="team in teamList" :cur-user="user" :team="team" :key="team.id">
     <van-button type="primary" size="small" round @click="toManage(team.id)">管理</van-button>
   </TeamCard>

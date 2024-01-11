@@ -26,7 +26,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TopBar title="个人信息" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <van-cell title="账户名" :value="user?.account"/>
   <van-cell title="昵称" :value="user?.nickname" is-link @click="toEdit('nickname', '昵称', user?.nickname)"/>
   <van-cell title="头像" is-link @click="toEdit('avatarUrl', '头像', user?.avatarUrl)">

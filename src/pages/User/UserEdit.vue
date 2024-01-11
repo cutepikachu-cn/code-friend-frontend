@@ -51,7 +51,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <TopBar :title="`编辑${editUser.editName}`" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <van-form @submit="onSubmit" v-if="editUser.editKey === 'tags'">
     <van-field
         v-model="tag"

@@ -32,7 +32,7 @@ request.interceptors.response.use(function (response) {
     if (res.code === 40100) {
         const redirectURL = window.location.href
         console.log(redirectURL)
-        window.location.href = `/login?redirectURL=${redirectURL}`
+        window.location.href = `/user/login?redirectURL=${redirectURL}`
     }
     return res
 }, function (error) {

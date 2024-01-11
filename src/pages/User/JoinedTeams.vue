@@ -43,7 +43,7 @@ const toTeamInfo = (teamId) => {
 </script>
 
 <template>
-  <TopBar title="加入的队伍" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <TeamCard v-for="team in teamList" :cur-user="user" :team="team" :key="team.id">
     <van-button type="primary" size="small" round @click="toTeamInfo(team.id)">详情</van-button>
     <van-button type="warning" size="small" round @click="doExistTeam(team.id)">退出队伍</van-button>

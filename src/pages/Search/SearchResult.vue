@@ -65,7 +65,7 @@ const onLoad = () => {
 </script>
 
 <template>
-  <TopBar title="查找结果" :show-right="false"/>
+  <TopBar :show-right="false"/>
   <van-empty v-if="!loading && userList.length === 0" description="查找结果为空"/>
   <van-list
       v-model:loading="loading"

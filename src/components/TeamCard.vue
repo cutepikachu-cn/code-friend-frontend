@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {SelfInfo, Team, User} from "@/modules/type.d.ts";
 import {JoinTeamParams} from "@/modules/requestParams.d.ts";
+import {ref} from "vue";
+import {showFailToast, showSuccessToast} from "vant";
 import {joinTeam} from "@/plugins/request/teamAPI.ts";
-import {showSuccessToast} from "vant";
 
 
 const props = defineProps<{
@@ -10,11 +11,24 @@ const props = defineProps<{
   curUser: SelfInfo
 }>()
 
-const doJoinTeam = (teamId) => {
-  const params: JoinTeamParams = {
-    teamId
+const showConfirmDialog = ref<boolean>(false)
+const password = ref<string>('')
+const params = ref<JoinTeamParams>({})
+
+const showConfirm = (teamId) => {
+  params.value.teamId = teamId
+  showConfirmDialog.value = true
+}
+
+const doJoinTeam = () => {
+  if (props.team.status === 2) {
+    if (!password.value || password.value.length === 0) {
+      showFailToast("加入失败\n请输入密码")
+      return
+    }
   }
-  joinTeam(params).then(res => {
+  params.value.password = password.value
+  joinTeam(params.value).then(res => {
     if (res.code !== 0) {
       return
     }
@@ -56,13 +70,30 @@ const isInTeam = (userId: number, team: Team) => {
     </template>
     <template #footer>
       <slot name="default">
-        <van-button v-if="!isInTeam(curUser.id, team)" type="primary" size="small" round @click="doJoinTeam(team.id)">
+        <van-button v-if="!isInTeam(curUser.id, team)" type="primary" size="small" round @click="showConfirm(team.id)">
           加入队伍
         </van-button>
         <van-button v-else type="primary" size="small" round>已加入</van-button>
       </slot>
     </template>
   </van-card>
+  <van-dialog v-model:show="showConfirmDialog"
+              show-cancel-button
+              @confirm="doJoinTeam"
+              :title="team.status === 2 ? '请输入密码' : '请确认'"
+  >
+    <van-field
+        v-if="team.status === 2"
+        v-model="password"
+        type="password"
+        name="密码"
+        label="密码"
+        placeholder="密码"
+        :rules="[{ required: true, message: '请填写密码' },
+        {pattern: /^[\w-]{8,20}$/, message: '密码为8~20位字母、数字、下划线或减号组合'}]"
+    />
+    <p v-else :style="{textAlign: 'center'}">请确认是否加入队伍</p>
+  </van-dialog>
 </template>
 
 <style scoped>

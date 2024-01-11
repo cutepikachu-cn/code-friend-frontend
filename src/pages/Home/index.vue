@@ -43,7 +43,7 @@ const onLoad = () => {
 </script>
 
 <template>
-  <TopBar title="伙伴匹配" :show-left="false"/>
+  <TopBar :show-left="false"/>
   <van-empty v-if="!loading && userList.length === 0" description="结果为空"/>
   <van-list
       v-model:loading="loading"
