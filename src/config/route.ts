@@ -13,10 +13,12 @@ import UserInfo from "@/pages/User/UserInfo.vue";
 import ManageTeams from "@/pages/User/ManageTeams.vue";
 import JoinedTeams from "@/pages/User/JoinedTeams.vue";
 import TeamInfo from "@/pages/Team/TeamInfo.vue";
+import Register from '@/pages/Register/index.vue'
 
 const routes = [
     {path: '', redirect: '/home'},
-    {path: '/user/login', meta: {title: '登录'}, component: Login},
+    {path: '/user/login', meta: {title: '用户登录'}, component: Login},
+    {path: '/user/register', meta: {title: '用户注册'}, component: Register},
     {
         path: '/',
         component: BasicLayout,

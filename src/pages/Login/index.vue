@@ -5,6 +5,7 @@ import {userLogin} from "@/plugins/request/userAPI.ts";
 import {setCurrentUserState} from "@/states/user.ts";
 import 'vant/es/toast/style'
 import {UserLoginParams} from "@/modules/requestParams";
+import TopBar from "@/components/TopBar.vue";
 
 const router = useRouter()
 const route = useRoute()
@@ -31,9 +32,9 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <van-form @submit="onSubmit"
-            :style="{height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center'}">
-    <van-cell-group inset>
+  <TopBar :show-left="false" :show-right="false"/>
+  <van-form @submit="onSubmit">
+    <van-cell-group inset class="van-hairline--bottom">
       <van-field
           v-model="userLoginParams.account"
           name="account"
@@ -50,7 +51,14 @@ const onSubmit = () => {
           :rules="[{ required: true, message: '请输入密码'}]"
       />
     </van-cell-group>
-    <div style="margin: 16px;">
+    <div :style="{margin: '16px', textAlign: 'right'}">
+      <RouterLink to="/user/register"
+                  :style="{fontSize: 'var(--van-font-size-md)', color: 'var(--van-blue)'}">
+        没有账户？去注册
+        <van-icon name="arrow"/>
+      </RouterLink>
+    </div>
+    <div :style="{margin: '16px'}">
       <van-button round block type="primary" native-type="submit">
         登录
       </van-button>
