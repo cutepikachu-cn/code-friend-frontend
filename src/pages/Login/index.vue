@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {userLogin} from "@/plugins/request/userAPI.ts";
 import {setCurrentUserState} from "@/states/user.ts";
 import 'vant/es/toast/style'
 import {UserLoginParams} from "@/modules/requestParams";
 
 const router = useRouter()
+const route = useRoute()
 
 const userLoginParams = ref<UserLoginParams>({
   account: 'cute-pikachu',
@@ -17,8 +18,13 @@ const onSubmit = () => {
     if (res.code !== 0) {
       return
     }
+    if (route.query.redirectURL) {
+      window.location.href = route.query.redirectURL as string
+    } else {
+      router.replace('/')
+    }
     setCurrentUserState(res.data)
-    router.replace('/home')
+
   })
 
 }

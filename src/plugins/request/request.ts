@@ -30,7 +30,9 @@ request.interceptors.response.use(function (response) {
         showFailToast(res.message)
     }
     if (res.code === 40100) {
-        window.location.href = `/login`
+        const redirectURL = window.location.href
+        console.log(redirectURL)
+        window.location.href = `/login?redirectURL=${redirectURL}`
     }
     return res
 }, function (error) {
