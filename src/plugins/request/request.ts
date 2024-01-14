@@ -3,7 +3,7 @@ import {showFailToast} from 'vant';
 import 'vant/es/toast/style'
 
 const request = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: import.meta.env.PROD ? 'http://localhost:8080/api' : 'http://localhost:8080/api',
     withCredentials: true,
 })
 
