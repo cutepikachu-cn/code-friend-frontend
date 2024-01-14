@@ -4,7 +4,7 @@ import 'vant/es/toast/style'
 
 const request = axios.create({
     baseURL: 'http://localhost:8080/api',
-    withCredentials: true
+    withCredentials: true,
 })
 
 // 添加请求拦截器
@@ -25,13 +25,11 @@ request.interceptors.response.use(function (response) {
         return response
     }
     const res = response.data
-    console.log(res)
     if (res.code !== 0) {
         showFailToast(res.message)
     }
     if (res.code === 40100) {
         const redirectURL = window.location.href
-        console.log(redirectURL)
         window.location.href = `/user/login?redirectURL=${redirectURL}`
     }
     return res
